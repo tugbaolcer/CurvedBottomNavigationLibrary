@@ -8,11 +8,43 @@ plugins {
     id 'maven-publish'
 }
 
-ext {
-    PUBLISH_GROUP_ID = 'com.tugbaolcer'
-    PUBLISH_VERSION = '1.0.0'
-    PUBLISH_ARTIFACT_ID = 'curved_bottom_navigation'
 
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
+def getVersionName = { ->
+    return "1.0.0"  // Replace with version Name
+}
+
+def getArtificatId = { ->
+    return "curvedbottomnavigationlibrary" // Replace with library name ID
+}
+
+publishing {
+    publications {
+        bar(MavenPublication) {
+            groupId 'com.tugbaolcer.curvedbottomnavigationlibrary' // Replace with group ID
+            artifactId getArtificatId()
+            version getVersionName()
+            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            /** Configure path of your package repository on Github
+             *  Replace GITHUB_USERID with your/organisation Github userID and REPOSITORY with the repository name on GitHub
+             */
+            url = uri("https://maven.pkg.github.com/tugbaolcer/CurvedBottomNavigationLibrary")
+
+            credentials {
+                /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
+                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+            }
+        }
+    }
 }
 
 android {
