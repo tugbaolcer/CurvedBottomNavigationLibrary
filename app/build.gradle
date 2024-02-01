@@ -49,11 +49,13 @@ publishing {
 
 android {
     namespace 'com.tugbaolcer.curvedbottomnavigationlibrary'
-    compileSdk 34
+    compileSdk 33
 
     defaultConfig {
+//        applicationId "com.tugbaolcer.curvedbottomnavigation"
+
         minSdk 26
-        targetSdk 34
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
