@@ -49,13 +49,12 @@ publishing {
 
 android {
     namespace 'com.tugbaolcer.curvedbottomnavigationlibrary'
-    compileSdk 33
+    compileSdkVersion 34
 
     defaultConfig {
-//        applicationId "com.tugbaolcer.curvedbottomnavigation"
 
         minSdk 26
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -63,8 +62,13 @@ android {
     }
 
     buildTypes {
-        release {
+        debug {
+            debuggable true
             minifyEnabled false
+        }
+        release {
+            debuggable false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
