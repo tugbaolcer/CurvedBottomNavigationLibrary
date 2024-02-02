@@ -7,17 +7,17 @@
     android:background="@color/purple_200">
 
 
-<!--    <com.tugbaolcer.curvedbottomnavigationlibrary.CurvedBottomNavigation-->
-<!--        android:id="@+id/bottom_navigation"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="120dp"-->
-<!--        app:cbn_background="@color/bottom_blue"-->
-<!--        app:cbn_fab_circle_color="@color/white"-->
-<!--        app:cbn_fab_icon_background="@color/bottom_blue"-->
-<!--        app:itemIconTint="@color/white"-->
-<!--        app:itemTextColor="@color/white"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <com.tugbaolcer.curvedbottomnavigationlibrary.CurvedBottomNavigation
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:cbn_background="@color/bottom_blue"
+        app:cbn_fab_circle_color="@color/white"
+        app:cbn_fab_icon_background="@color/bottom_blue"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
