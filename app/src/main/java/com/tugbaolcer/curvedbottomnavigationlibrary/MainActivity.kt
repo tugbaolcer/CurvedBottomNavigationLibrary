@@ -16,17 +16,17 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(binding.root)
 
         binding.apply {
-            bottomNavigation.apply {
-                setOnNavigationItemSelectedListener (this@MainActivity)
-                inflateMenu(R.menu.bottom_nav_menu)
-            }
+//            bottomNavigation.apply {
+//                setOnNavigationItemSelectedListener (this@MainActivity)
+//                inflateMenu(R.menu.bottom_nav_menu)
+//            }
         }
 
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         binding.apply {
-            bottomNavigation.changedFabIcon(bottomNavigation, item)
+//            bottomNavigation.changedFabIcon(bottomNavigation, item)
         }
         return true
     }

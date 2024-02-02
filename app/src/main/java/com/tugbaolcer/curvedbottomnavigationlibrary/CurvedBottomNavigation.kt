@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.tugbaolcer.curvedbottomnavigationlibrary.databinding.LayoutFabIconBinding
 
 
-class CurvedBottomNavigation : BottomNavigationView {
+private class CurvedBottomNavigation : BottomNavigationView {
 
     protected var binding = LayoutFabIconBinding.inflate(LayoutInflater.from(context), this, true)
 

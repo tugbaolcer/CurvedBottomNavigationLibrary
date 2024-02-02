@@ -20,7 +20,7 @@ import com.tugbaolcer.curvedbottomnavigationlibs.databinding.LayoutFabIconBindin
 
 class CurvedBottomNavigation : BottomNavigationView {
 
-    protected var binding = LayoutFabIconBinding.inflate(LayoutInflater.from(context), this, true)
+    private var binding = LayoutFabIconBinding.inflate(LayoutInflater.from(context), this, true)
 
 
     private var path: Path? = null
@@ -137,40 +137,40 @@ class CurvedBottomNavigation : BottomNavigationView {
     }
 
      fun draw(i: Int, bottomNavigation: CurvedBottomNavigation) {
-        bottomNavigation.let { bottomNavigation ->
+        bottomNavigation.let { navigation ->
             firstCurveStartPoint.set(
-                bottomNavigation.bottomNavBarWidth / i - bottomNavigation.curveCircleRadius * 2 -
-                        bottomNavigation.curveCircleRadius / 3, 0
+                navigation.bottomNavBarWidth / i - navigation.curveCircleRadius * 2 -
+                        navigation.curveCircleRadius / 3, 0
             )
             firstCurveEndPoint.set(
-                bottomNavigation.bottomNavBarWidth / i,
-                bottomNavigation.curveCircleRadius + bottomNavigation.curveCircleRadius / 4
+                navigation.bottomNavBarWidth / i,
+                navigation.curveCircleRadius + navigation.curveCircleRadius / 4
             )
 
-            secondCurveStartPoint = bottomNavigation.firstCurveEndPoint
+            secondCurveStartPoint = navigation.firstCurveEndPoint
             secondCurveEndPoint.set(
-                bottomNavigation.bottomNavBarWidth / i + bottomNavigation.curveCircleRadius * 2 + bottomNavigation.curveCircleRadius / 3,
+                navigation.bottomNavBarWidth / i + navigation.curveCircleRadius * 2 + navigation.curveCircleRadius / 3,
                 0
             )
 
             firstCurveControlPointX.set(
-                bottomNavigation.firstCurveStartPoint.x + bottomNavigation.curveCircleRadius + bottomNavigation.curveCircleRadius / 4,
-                bottomNavigation.firstCurveStartPoint.y
+                navigation.firstCurveStartPoint.x + navigation.curveCircleRadius + navigation.curveCircleRadius / 4,
+                navigation.firstCurveStartPoint.y
             )
 
             firstCurveControlPointY.set(
-                bottomNavigation.firstCurveEndPoint.x - bottomNavigation.curveCircleRadius * 2 + bottomNavigation.curveCircleRadius,
-                bottomNavigation.firstCurveEndPoint.y
+                navigation.firstCurveEndPoint.x - navigation.curveCircleRadius * 2 + navigation.curveCircleRadius,
+                navigation.firstCurveEndPoint.y
             )
 
             secondCurveControlPointX.set(
-                bottomNavigation.secondCurveStartPoint.x + bottomNavigation.curveCircleRadius * 2 - bottomNavigation.curveCircleRadius,
-                bottomNavigation.secondCurveStartPoint.y
+                navigation.secondCurveStartPoint.x + navigation.curveCircleRadius * 2 - navigation.curveCircleRadius,
+                navigation.secondCurveStartPoint.y
             )
 
             secondCurveControlPointY.set(
-                bottomNavigation.secondCurveEndPoint.x - (bottomNavigation.curveCircleRadius + bottomNavigation.curveCircleRadius / 4),
-                bottomNavigation.secondCurveEndPoint.y
+                navigation.secondCurveEndPoint.x - (navigation.curveCircleRadius + navigation.curveCircleRadius / 4),
+                navigation.secondCurveEndPoint.y
             )
         }
 
