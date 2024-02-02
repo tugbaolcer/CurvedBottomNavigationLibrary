@@ -1,51 +1,17 @@
 plugins {
-//    id 'com.android.application'
+    id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.android.library'
+//    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
-    id 'maven-publish'
+//    id 'maven-publish'
 }
 
-
+/**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
+def githubPropertiesFile = rootProject.file("github.properties");
 def githubProperties = new Properties()
-githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
-
-def getVersionName = { ->
-    return "1.0.0"  // Replace with version Name
-}
-
-def getArtificatId = { ->
-    return "curvedbottomnavigationlibrary" // Replace with library name ID
-}
-
-publishing {
-    publications {
-        bar(MavenPublication) {
-            groupId 'com.tugbaolcer.curvedbottomnavigationlibrary' // Replace with group ID
-            artifactId getArtificatId()
-            version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
-        }
-    }
-
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            /** Configure path of your package repository on Github
-             *  Replace GITHUB_USERID with your/organisation Github userID and REPOSITORY with the repository name on GitHub
-             */
-            url = uri("https://maven.pkg.github.com/tugbaolcer/CurvedBottomNavigationLibrary")
-
-            credentials {
-                /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
-                username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
-                password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
-            }
-        }
-    }
-}
+githubProperties.load(new FileInputStream(githubPropertiesFile))
 
 android {
     namespace 'com.tugbaolcer.curvedbottomnavigationlibrary'
@@ -80,8 +46,27 @@ android {
         jvmTarget = '17'
     }
 
-    viewBinding{
+    viewBinding {
         enabled = true
+    }
+
+    /****GitHubPackages Path and credentials***/
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            /*  Configure path to the library hosted on GitHub Packages Registry
+             *  Replace UserID with package owner userID and REPOSITORY with the repository name
+             *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"
+             */
+            //url = uri("https://maven.pkg.github.com/UserID/REPOSITORY")
+            url = uri("https://maven.pkg.github.com/tugbaolcer/CurvedBottomNavigationLibrary")
+
+            credentials {
+                /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key =PERSONAL_ACCESS_TOKEN**/
+                username = System.getenv("GPR_USER") ?: githubProperties['gpr.usr']
+                password = System.getenv("GPR_API_KEY") ?: githubProperties['gpr.key']
+            }
+        }
     }
 }
 
