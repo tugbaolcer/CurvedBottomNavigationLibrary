@@ -70,7 +70,7 @@ class CurvedBottomNavigation : BottomNavigationView {
         paint!!.color = customBackgroundColor
         setBackgroundColor(Color.TRANSPARENT)
         itemBackgroundResource = R.drawable.bg_inset
-        post { selectedItemId = R.id.nav_categories }
+        post { selectedItemId = menu.getItem(0).itemId }
         binding.apply {
             linId.backgroundTintList = ColorStateList.valueOf(customFabCircleColor)
             linId.children.forEach { view ->
@@ -222,36 +222,26 @@ class CurvedBottomNavigation : BottomNavigationView {
     fun changedFabIcon(bottomNavigation: CurvedBottomNavigation, menuItem: MenuItem ){
         binding.apply {
             when(menuItem.itemId){
-                R.id.nav_home-> {
+                menu.getItem(0).itemId -> {
                     bottomNavigation.draw(6, bottomNavigation)
                     linId.x = bottomNavigation.firstCurveControlPointX.x.toFloat()
                     fab1.visibility = View.VISIBLE
                     fab2.visibility = View.GONE
                     fab3.visibility = View.GONE
-                    menu.findItem(R.id.nav_home).icon = null
-                    menu.findItem(R.id.nav_categories).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_category)
-                    menu.findItem(R.id.nav_profile).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_account)
                 }
-                R.id.nav_categories-> {
+                menu.getItem(1).itemId -> {
                     bottomNavigation.draw(2, bottomNavigation)
                     linId.x = bottomNavigation.firstCurveControlPointX.x.toFloat()
                     fab1.visibility = View.GONE
                     fab2.visibility = View.VISIBLE
                     fab3.visibility = View.GONE
-                    menu.findItem(R.id.nav_home).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_home)
-                    menu.findItem(R.id.nav_categories).icon = null
-                    menu.findItem(R.id.nav_profile).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_account)
                 }
-                R.id.nav_profile-> {
+                menu.getItem(2).itemId -> {
                     bottomNavigation.draw( bottomNavigation)
                     linId.x = bottomNavigation.firstCurveControlPointX.x.toFloat()
                     fab1.visibility = View.GONE
                     fab2.visibility = View.GONE
                     fab3.visibility = View.VISIBLE
-                    menu.findItem(R.id.nav_home).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_home)
-                    menu.findItem(R.id.nav_categories).icon = ContextCompat.getDrawable(context, R.drawable.ic_white_category)
-                    menu.findItem(R.id.nav_profile).icon = null
-
                 }
             }
         }
