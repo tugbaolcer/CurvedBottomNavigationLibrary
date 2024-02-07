@@ -6,4 +6,4 @@ dependencyResolutionManagement {
         maven { url "https://plugins.gradle.org/m2/" }
     }
 }
-include ':curvedBottomNavigationLibs'
+include ':curvedBottomNavigationLib'
