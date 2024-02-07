@@ -49,7 +49,7 @@ publishing {
             groupId 'com.tugbaolcer.curvedbottomnavigationlib'
             artifactId getArtificatId()
             version getVersionName()
-            artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
+            artifact("build/outputs/aar/${getArtificatId()}-release.aar")
         }
     }
 
