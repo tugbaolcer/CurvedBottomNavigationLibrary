@@ -40,7 +40,7 @@ def getVersionName = { ->
 }
 
 def getArtificatId = { ->
-    return "curvedbottomnavigationlib" // Replace with library name ID
+    return "curvedBottomNavigationLib" // Replace with library name ID
 }
 
 publishing {
