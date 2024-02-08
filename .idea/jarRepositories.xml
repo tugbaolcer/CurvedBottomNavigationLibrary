@@ -41,5 +41,10 @@
       <option name="name" value="GitHubPackages" />
       <option name="url" value="https://github.com/tugbaolcer/CurvedBottomNavigationLibrary" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="GitHubPackages" />
+      <option name="name" value="GitHubPackages" />
+      <option name="url" value="https:/github.com/tugbaolcer/CurvedBottomNavigationLibrary" />
+    </remote-repository>
   </component>
 </project>
