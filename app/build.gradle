@@ -50,6 +50,10 @@ android {
         enabled = true
     }
 
+    repositories{
+        maven { url 'https://jitpack.io' }
+    }
+
     /****GitHubPackages Path and credentials***/
 //    repositories {
 //        maven {
