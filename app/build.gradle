@@ -1,17 +1,9 @@
-plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-//    id 'com.android.library'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-//    id 'maven-publish'
-}
-
-///**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key=PERSONAL_ACCESS_TOKEN**/
-//def githubPropertiesFile = rootProject.file("github.properties");
-//def githubProperties = new Properties()
-//githubProperties.load(new FileInputStream(githubPropertiesFile))
+apply plugin: 'maven-publish'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     namespace 'com.tugbaolcer.curvedbottomnavigationlibrary'
@@ -50,28 +42,50 @@ android {
         enabled = true
     }
 
-    repositories{
-        maven { url 'https://jitpack.io' }
-    }
-
-    /****GitHubPackages Path and credentials***/
-//    repositories {
-//        maven {
-//            name = "GitHubPackages"
-//            /*  Configure path to the library hosted on GitHub Packages Registry
-//             *  Replace UserID with package owner userID and REPOSITORY with the repository name
-//             *  e.g. "https://maven.pkg.github.com/enefce/AndroidLibraryForGitHubPackagesDemo"
-//             */
-//            //url = uri("https://maven.pkg.github.com/UserID/REPOSITORY")
-//            url = uri("https://maven.pkg.github.com/tugbaolcer/CurvedBottomNavigationLibrary")
-//
-//            credentials {
-//                /**Create github.properties in root project folder file with gpr.usr=GITHUB_USER_ID  & gpr.key =PERSONAL_ACCESS_TOKEN**/
-//                username = System.getenv("GPR_USER") ?: githubProperties['gpr.usr']
-//                password = System.getenv("GPR_API_KEY") ?: githubProperties['gpr.key']
-//            }
-//        }
+//    repositories{
+//        maven { url 'https://jitpack.io' }
 //    }
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set("sources")
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId "com.tugbaolcer"
+            artifactId "app"
+            version "1.0.0"
+            artifact sourceJar
+            artifact "$buildDir/outputs/aar/app-release.aar"
+
+            pom {
+                withXml {
+                    def dependenciesNode = asNode().appendNode('dependencies')
+
+                    project.configurations.implementation.allDependencies.each {
+                        if (it.group != null || it.name != null || it.version != null || it.name == "unspecified") return
+
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = uri("https://maven.pkg.github.com/tugbaolcer/CurvedBottomNavigationLibrary")
+            credentials {
+                username = project.findProperty("gpr.user")
+                password = project.findProperty("gpr.token")
+            }
+        }
+    }
 }
 
 dependencies {
