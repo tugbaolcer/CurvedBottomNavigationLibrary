@@ -59,7 +59,7 @@ publishing {
             artifactId "app"
             version "1.0.1"
             artifact sourceJar
-            artifact "$buildDir/outputs/aar/app.aar"
+            artifact "$buildDir/outputs/aar/app-release.aar"
 
             pom {
                 withXml {
