@@ -56,8 +56,8 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId "com.tugbaolcer"
-            artifactId "app"
-            version "1.0.1"
+            artifactId "curvedbottomnavigationlibrary"
+            version "1.0.0"
             artifact sourceJar
             artifact("$buildDir/outputs/aar/app-release.aar")
 
