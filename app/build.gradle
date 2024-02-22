@@ -47,10 +47,10 @@ android {
 //    }
 }
 
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier.set("sources")
-}
+//task sourceJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    archiveClassifier.set("sources")
+//}
 
 publishing {
     publications {
@@ -58,7 +58,7 @@ publishing {
             groupId "com.tugbaolcer"
             artifactId "curvedbottomnavigationlibrary"
             version "1.0.1"
-            artifact sourceJar
+//            artifact sourceJar
             artifact("app/build/outputs/aar/app-release.aar")
 
             pom {
