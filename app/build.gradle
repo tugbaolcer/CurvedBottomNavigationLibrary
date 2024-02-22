@@ -57,9 +57,9 @@ publishing {
         maven(MavenPublication) {
             groupId "com.tugbaolcer"
             artifactId "curvedbottomnavigationlibrary"
-            version "1.0.0"
+            version "1.0.1"
             artifact sourceJar
-            artifact("$buildDir/outputs/aar/app-release.aar")
+            artifact("app/build/outputs/aar/app-release.aar")
 
             pom {
                 withXml {
